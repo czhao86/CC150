@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+bool isUnique(string s)
+{
+	bool a[256];
+	memset(a, 0, sizeof(a));
+	int i;
+	for (i = 0; i < s.length(); ++i)
+	{
+		int v = (int)s[i];
+		if (a[v]) return false;
+		a[v] = true;
+	}
+	return true;
+}
+
+int main()
+{
+	string g = "abcadef";
+	cout << isUnique(g) << endl;
+}
