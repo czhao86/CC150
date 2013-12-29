@@ -6,8 +6,7 @@ bool isUnique(string s)
 {
 	bool a[256];
 	memset(a, 0, sizeof(a));
-	int i;
-	for (i = 0; i < s.length(); ++i)
+	for (int i = 0; i < s.length(); i++)
 	{
 		int v = (int)s[i];
 		if (a[v]) return false;
@@ -16,8 +15,21 @@ bool isUnique(string s)
 	return true;
 }
 
+bool isUnique2(string s)
+{
+	int checker = 0;
+	for (int i = 0; i < s.length(); i++)
+	{
+		int vv = (int)(s[i] - 'a');
+		if (checker & (1 << vv)) return false;
+		checker |= (1 << vv);
+	}
+	return true;
+}
+
 int main()
 {
-	string g = "abcadef";
+	string g = "abcdefghijklmnopqrstuvwxyz";
 	cout << isUnique(g) << endl;
+	cout << isUnique2(g) << endl;
 }
