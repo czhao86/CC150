@@ -64,5 +64,6 @@ int main()
 	node *head=init(a, n);
 	removeDuplicate(head);
 	print(head);
+	cout << endl;
 	return 0;
 }
