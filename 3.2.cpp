@@ -1,12 +1,17 @@
 #include <iostream>
 using namespace std;
 
+struct node
+{
+	int val, min;
+};
+
 class stack
 {
 	int top, size;
-	int *p;
+	node *p;
 public:
-	stack(int size= 10);
+	stack(int size = 30);
 	~stack();
 	int pop();
 	void push(int num);
@@ -17,8 +22,8 @@ public:
 stack::stack(int size)
 {
 	top = -1;
-	p = new int[10];
-	size = 10;
+	p = new node[30];
+	size = 30;
 }
 
 stack::~stack()
@@ -28,43 +33,48 @@ stack::~stack()
 
 int stack::pop()
 {
-	int x = p[top];
+	int x = p[top].val;
 	top--;
 	return x;
 }
 
 void stack::push(int num)
 {
-	p[top+1] = num;
+	p[top+1].val = num;
 	top++;
-}
-
-void stack::display()
-{
-	for (int i = 0; i < top+1; ++i)
+	if (top == 0) p[top].min = num;
+	else
 	{
-		cout << p[i] << ' ';
+		if (p[top].val < p[top - 1].min) p[top].min = p[top].val;
+		else p[top].min = p[top - 1].min;
 	}
 }
 
 int stack::min()
 {
-	int min;
-	min = p[0];
-	for (int i = 0; i < 10; ++i)
+	return p[top].min;
+}
+
+void stack::display()
+{
+	for (int i = 0; i < top + 1; ++i)
 	{
-		if (p[i] < min) min = p[i];
+		cout << p[i].val << ' ';
 	}
-	return min;
 }
 
 void main()
 {
 	stack s;
-	for (int i = 20; i > 10; --i)
+	for (int i = 2; i < 10; ++i)
 	{
-		s.push(i);
+		s.push(3 * i);
+	}
+	for (int i = 1; i < 10; ++i)
+	{
+		s.push(3 * i);
 	}
 	s.display();
+	cout << endl;
 	cout << s.min() << endl;
 }
