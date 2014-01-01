@@ -3,53 +3,64 @@ using namespace std;
 
 class stack3
 {
-	int top, size;
+	int top[3], size;
 	int *p;
 public:
-	stack3(int=0);
+	stack3(int size= 30);
 	~stack3();
-	int pop();
-	void push(int num);
-	void display();
+	int pop(int stackNo);
+	void push(int stackNo, int num);
+	void display(int stackNo);
 };
 
 stack3::stack3(int size)
 {
-	top = -1;
-	p = new int[size];
+	top[0]=top[1]=top[2] = -1;
+	p = new int[30];
+	size = 30;
 }
 
 stack3::~stack3()
 {
-	if (p!=0) delete[] p;
+	delete[] p;
 }
 
-int stack3::pop()
+int stack3::pop(int stackNo)
 {
-	int x = p[top];
-	size--;
-	top--;
+	int x = p[10*stackNo+top[stackNo]];
+	top[stackNo]--;
 	return x;
 }
 
-void stack3::push(int num)
+void stack3::push(int stackNo, int num)
 {
-	size++;
-	top++;
-	p[top] = num;
+	p[10*stackNo+top[stackNo]+1] = num;
+	top[stackNo]++;
 }
 
-void stack3::display()
+void stack3::display(int stackNo)
 {
-	for (int i = 0; i < top; ++i)
+	for (int i = 10*stackNo; i < 10*stackNo+top[stackNo]+1; ++i)
 	{
-		cout << p[i] << endl;
+		cout << p[i] << ' ';
 	}
 }
 
 void main()
 {
 	stack3 s;
-	s.push(1);
-	s.display();
+	for (int i = 0; i < 10; ++i)
+	{
+		s.push(0, i);
+		s.push(1, 2 * i);
+		s.push(2, 3 * i);
+	}
+	s.display(0);
+	cout << endl;
+	s.display(1);
+	cout << endl;
+	s.display(2);
+	cout << endl;
+	cout<<s.pop(0)<<endl;
+	cout<<s.pop(0)<<endl;
 }
