@@ -1,6 +1,12 @@
 #include <iostream>
 using namespace std;
 
+int fibor(int n)
+{
+	if (n == 1 || n == 2) return 1;
+	else return fibor(n - 1) + fibor(n - 2);
+}
+
 void fibo(int n)
 {
 	int a[100];
@@ -22,5 +28,6 @@ int main()
 	int x;
 	cin >> x;
 	fibo(x);
+	cout << fibor(x) << endl;
 	return 0;	
 }
