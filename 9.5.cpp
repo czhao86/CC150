@@ -12,7 +12,6 @@ int find(string str[], int m, int n, string goal)
 		if (goal > str[mid]) m = mid;
 		else n = mid;
 	}
-
 }
 
 int main()
