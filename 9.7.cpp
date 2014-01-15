@@ -19,7 +19,7 @@ bool cmp(person p1, person p2)
 
 int tower(person p[])
 {
-	int k[6] = { 1, 0, 0, 0, 0, 0 };
+	int k[6] = { 1, 1, 1, 1, 1, 1 };
 	for (int i = 1; i < 6; ++i)
 	{
 		for (int j = 0; j < i; ++j)
