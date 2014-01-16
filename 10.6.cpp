@@ -19,8 +19,8 @@ public:
 	line() {}
 	line(point p1, point p2)
 	{
-		epsilon = 0.001;
-		if ((p1.x - p2.x) > epsilon)
+		epsilon = 0.0001;
+		if (abs(p1.x - p2.x) > epsilon)
 		{
 			intercept = p1.y-(p2.y-p1.y)/(p2.x-p1.x)*p1.x;
 			slope = (p2.y - p1.y) / (p2.x - p1.x);
@@ -74,20 +74,16 @@ line bestline(point *p, int totalnum)
 
 int main()
 {
-	//srand((unsigned)time(0));
-	//int graph_size = 100;
-	int point_num = 2;
+	srand((unsigned)time(0));
+	int graph_size = 100;
+	int point_num = 100;
 	point *p = new point[point_num];
-	//for (int i = 0; i < point_num; ++i)
-	//{
-	//	p[i].x = rand() / double(RAND_MAX)*graph_size;
-	//	p[i].y = rand() / double(RAND_MAX)*graph_size;
-	//}
-	p[0].x = 0.0;
-	p[0].y = 0.0;
-	p[1].x = 1.0;
-	p[1].y = 1.0;
-	line bl = bestline(p, 2);
+	for (int i = 0; i < point_num; ++i)
+	{
+		p[i].x = rand() / double(RAND_MAX)*graph_size;
+		p[i].y = rand() / double(RAND_MAX)*graph_size;
+	}
+	line bl = bestline(p, 100);
 	bl.print();
 	return 0;
 }
