@@ -8,7 +8,7 @@ public:
 	bitmap(int size = 32)
 	{
 		p = new int[size / 32];
-		memset(p, 0, 1000);
+		memset(p, 0, 10000);
 	}
 	~bitmap(){ delete[] p; }
 	bool check(int n)
@@ -23,7 +23,7 @@ public:
 
 void checkDuplicate(int a[], int n)
 {
-	bitmap bm(32000);
+	bitmap bm(320000);
 	for (int i = 0; i < n; ++i)
 	{
 		if (bm.check(a[i])) cout << a[i] << endl;
