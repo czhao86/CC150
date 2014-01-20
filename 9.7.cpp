@@ -31,13 +31,18 @@ int tower(person p[])
 			}
 		}
 	}
-	return k[5];
+	int result = 0;
+	for (int kk = 0; kk < 6; ++kk)
+	{
+		if (k[kk] >= result) result=k[kk];
+	}
+	return result;
 }
 
 int main()
 {
 	int hh[6] = { 100, 150, 90, 190, 95, 110 };
-	int ww[6] = { 65, 70, 56, 75, 60, 68 };
+	int ww[6] = { 65, 70, 56, 55, 60, 68 };
 	for (int i = 0; i < 6; ++i)
 	{
 		p[i].h = hh[i];
@@ -45,8 +50,9 @@ int main()
 	}
 	for (int i = 0; i < 6; ++i)
 	{
-		cout<<p[i].h<<' '<<p[i].w <<endl;
+		cout << p[i].h << ' ' << p[i].w << endl;
 	}
+	cout << endl;
 	sort(p, p + 6, cmp);
 	for (int i = 0; i < 6; ++i)
 	{
