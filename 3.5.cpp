@@ -15,7 +15,7 @@ public:
 	}
 	int qtop()
 	{
-		if (s2.empty)
+		if (s2.empty())
 		{
 			while (!s1.empty())
 			{
