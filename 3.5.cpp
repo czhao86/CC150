@@ -13,12 +13,15 @@ public:
 	{
 		s1.push(num);
 	}
-	int qpop()
+	int qtop()
 	{
-		while (!s1.empty())
+		if (s2.empty)
 		{
+			while (!s1.empty())
+			{
 			s2.push(s1.top());
 			s1.pop();
+			}
 		}
 		return s2.top();
 	}
@@ -31,5 +34,5 @@ int main()
 	{
 		s.qadd(i);
 	}
-	cout << s.qpop() << endl;
+	cout << s.qtop() << endl;
 }
